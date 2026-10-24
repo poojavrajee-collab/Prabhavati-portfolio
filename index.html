@@ -1,352 +1,720 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prabhavati | Tech Portfolio</title>
+<meta name="theme-color" content="#080b16">
+<title>Prabhavati V. | Creative Developer Portfolio</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg: #080d18;
-    --card: #111a2b;
-    --cyan: #48e0ef;
-    --white: #f4f7ff;
-    --muted: #aab6ca;
+  --bg: #080b16;
+  --panel: #101629;
+  --panel2: #141c32;
+  --cyan: #65f5ed;
+  --purple: #a78bfa;
+  --pink: #f3a6d7;
+  --text: #f5f7ff;
+  --muted: #a0abc3;
+  --border: rgba(255,255,255,.10);
 }
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:90px; }
 
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: var(--bg);
-    color: var(--white);
-    line-height: 1.7;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.7;
+  overflow-x:hidden;
 }
+
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    radial-gradient(ellipse at 10% 15%,#33205a38,transparent 40%),
+    radial-gradient(ellipse at 90% 40%,#075b6730,transparent 38%);
+}
+
+a { color:inherit; text-decoration:none; }
+button { font:inherit; }
+.container { width:min(1120px,90%); margin:auto; }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 8%;
-    background: rgba(8, 13, 24, 0.95);
-    border-bottom: 1px solid #1c2a40;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(8,11,22,.86);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--cyan);
+.nav-inner {
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
 
-nav ul {
-    display: flex;
-    gap: 25px;
-    list-style: none;
+.brand {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:23px;
+  font-weight:700;
+  letter-spacing:-1px;
 }
 
-nav a {
-    color: var(--white);
-    text-decoration: none;
-    transition: color 0.3s;
+.brand span { color:var(--cyan); }
+
+.nav-links {
+  display:flex;
+  gap:25px;
+  list-style:none;
+  align-items:center;
 }
 
-nav a:hover {
-    color: var(--cyan);
+.nav-links a {
+  color:var(--muted);
+  font-size:13px;
+  transition:.25s;
+}
+
+.nav-links a:hover { color:var(--cyan); }
+
+.nav-cta {
+  border:1px solid #65f5ed70;
+  color:var(--cyan)!important;
+  padding:9px 15px;
+  border-radius:9px;
+}
+
+.menu-btn {
+  display:none;
+  background:transparent;
+  color:white;
+  border:1px solid var(--border);
+  padding:7px 11px;
+  border-radius:8px;
+  cursor:pointer;
 }
 
 .hero {
-    min-height: 88vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    padding: 70px 10%;
-    flex-wrap: wrap;
-    background:
-        radial-gradient(ellipse at 80% 40%, #123344 0%, transparent 40%),
-        var(--bg);
+  min-height:650px;
+  padding:95px 0 85px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  align-items:center;
+  gap:60px;
 }
 
-.hero-content {
-    flex: 1 1 350px;
-    animation: appear 1s ease;
+.eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:var(--cyan);
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:700;
+  text-transform:uppercase;
 }
 
-.tag {
-    color: var(--cyan);
-    letter-spacing: 3px;
-    font-size: 13px;
-    font-weight: bold;
+.status-dot {
+  width:8px;
+  height:8px;
+  background:var(--cyan);
+  border-radius:50%;
+  box-shadow:0 0 12px var(--cyan);
 }
 
-h1 {
-    font-size: clamp(42px, 6vw, 70px);
-    line-height: 1.15;
-    margin: 18px 0;
+h1,h2,h3,h4 {
+  font-family:'Space Grotesk',sans-serif;
+  line-height:1.2;
 }
 
-.highlight {
-    color: var(--cyan);
+.hero h1 {
+  font-size:clamp(45px,6.2vw,76px);
+  letter-spacing:-3px;
+  margin:23px 0 20px;
 }
 
-.hero p, .section-intro {
-    color: var(--muted);
-    max-width: 600px;
+.gradient-text {
+  background:linear-gradient(100deg,var(--cyan),#91b8ff 48%,var(--purple));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
-.buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 28px;
+.hero-copy {
+  color:var(--muted);
+  font-size:16px;
+  max-width:540px;
+}
+
+.hero-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:13px;
+  margin-top:30px;
 }
 
 .btn {
-    display: inline-block;
-    padding: 12px 23px;
-    border: 1px solid var(--cyan);
-    border-radius: 8px;
-    text-decoration: none;
-    color: var(--cyan);
-    transition: 0.3s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:12px 19px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  font-size:13px;
+  font-weight:700;
+  transition:transform .25s,box-shadow .25s;
 }
 
-.btn.primary {
-    background: var(--cyan);
-    color: #07111c;
-    font-weight: bold;
+.btn:hover { transform:translateY(-3px); }
+
+.btn-primary {
+  color:#07121b;
+  background:linear-gradient(100deg,var(--cyan),#9bf7dc);
+  border-color:transparent;
+  box-shadow:0 8px 30px #65f5ed20;
 }
 
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px #48e0ef35;
+.btn-outline:hover {
+  border-color:var(--cyan);
+  color:var(--cyan);
 }
 
-.tech-art {
-    flex: 0 1 300px;
-    min-height: 300px;
-    display: grid;
-    place-items: center;
+.hero-meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:22px;
+  margin-top:32px;
+  color:var(--muted);
+  font-size:12px;
 }
 
-.tech-circle {
-    width: 240px;
-    height: 240px;
-    border: 2px solid var(--cyan);
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: 85px;
-    color: var(--cyan);
-    box-shadow: 0 0 40px #48e0ef25, inset 0 0 40px #48e0ef15;
-    animation: float 4s ease-in-out infinite;
-    position: relative;
+.hero-meta span { display:flex; align-items:center; gap:7px; }
+.hero-meta b { color:var(--text); font-weight:600; }
+
+.art-wrap {
+  position:relative;
+  min-height:420px;
+  display:grid;
+  place-items:center;
 }
 
-.tech-circle::before,
-.tech-circle::after {
-    content: "";
-    position: absolute;
-    border: 1px solid #48e0ef55;
-    border-radius: 50%;
+.art-glow {
+  position:absolute;
+  width:290px;
+  height:290px;
+  background:linear-gradient(135deg,#65f5ed25,#a78bfa35,#f3a6d725);
+  filter:blur(40px);
+  border-radius:50%;
 }
 
-.tech-circle::before {
-    width: 285px;
-    height: 285px;
+.orbit {
+  position:absolute;
+  width:330px;
+  height:330px;
+  border:1px solid #65f5ed38;
+  border-radius:50%;
+  animation:spin 24s linear infinite;
 }
 
-.tech-circle::after {
-    width: 320px;
-    height: 320px;
-    border-style: dashed;
+.orbit.two {
+  width:390px;
+  height:245px;
+  border-color:#a78bfa55;
+  transform:rotate(-35deg);
+  animation:spin 30s linear infinite reverse;
 }
 
-section {
-    padding: 85px 10%;
+.orbit::after {
+  content:"";
+  position:absolute;
+  top:35px;
+  left:42px;
+  width:11px;
+  height:11px;
+  background:var(--cyan);
+  border-radius:50%;
+  box-shadow:0 0 20px var(--cyan);
+}
+
+.orbit.two::after {
+  background:var(--pink);
+  box-shadow:0 0 20px var(--pink);
+  top:auto;
+  bottom:30px;
+  left:auto;
+  right:38px;
+}
+
+.profile-card {
+  position:relative;
+  z-index:2;
+  width:270px;
+  padding:25px;
+  background:linear-gradient(145deg,#19243aee,#101629ee);
+  border:1px solid #ffffff20;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 30px 90px #0007;
+  animation:float 5s ease-in-out infinite;
+}
+
+.avatar {
+  width:115px;
+  height:115px;
+  margin:0 auto 20px;
+  border-radius:32px;
+  display:grid;
+  place-items:center;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:40px;
+  font-weight:700;
+  color:#08111d;
+  background:linear-gradient(135deg,var(--cyan),#9cb8ff 55%,var(--purple));
+  box-shadow:0 0 45px #65f5ed22;
+}
+
+.profile-card h3 { font-size:22px; }
+.profile-card p { color:var(--muted); font-size:12px; margin-top:5px; }
+
+.mini-badges {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:17px;
+}
+
+.mini-badges span {
+  background:#ffffff08;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:5px 9px;
+  color:#cbd4e8;
+  font-size:10px;
+}
+
+.float-label {
+  position:absolute;
+  z-index:3;
+  padding:11px 14px;
+  background:#111a2beF;
+  border:1px solid var(--border);
+  border-radius:12px;
+  font-size:12px;
+  box-shadow:0 10px 30px #0004;
+}
+
+.float-label strong { color:var(--cyan); }
+.float-one { top:55px; right:-2px; }
+.float-two { bottom:45px; left:-10px; }
+
+section { padding:90px 0; }
+
+.section-head { margin-bottom:36px; }
+.section-kicker {
+  color:var(--cyan);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:10px;
+  font-weight:700;
 }
 
 .section-title {
-    font-size: 34px;
-    margin-bottom: 12px;
+  font-size:clamp(31px,4vw,44px);
+  letter-spacing:-1.5px;
+  margin:9px 0 13px;
 }
 
-.section-title span {
-    color: var(--cyan);
+.section-desc {
+  color:var(--muted);
+  max-width:630px;
+  font-size:14px;
 }
 
-.section-intro {
-    margin-bottom: 35px;
+.about-grid {
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:22px;
 }
 
-.about-box {
-    background: var(--card);
-    padding: 30px;
-    border: 1px solid #24364d;
-    border-radius: 16px;
+.panel {
+  background:linear-gradient(145deg,#141c30,#0e1425);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:29px;
 }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 22px;
-    margin-top: 30px;
+.panel p { color:var(--muted); font-size:14px; }
+.panel p + p { margin-top:14px; }
+
+.panel h3 { font-size:20px; margin-bottom:15px; }
+
+.fact-list { display:grid; gap:14px; }
+
+.fact {
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  padding-bottom:13px;
+  border-bottom:1px solid var(--border);
 }
 
-.card {
-    background: var(--card);
-    border: 1px solid #24364d;
-    padding: 25px;
-    border-radius: 15px;
-    transition: 0.3s;
+.fact:last-child { border:0; padding:0; }
+.fact-icon {
+  width:37px;
+  height:37px;
+  flex-shrink:0;
+  display:grid;
+  place-items:center;
+  border-radius:11px;
+  background:#65f5ed13;
+  color:var(--cyan);
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    border-color: var(--cyan);
-    box-shadow: 0 10px 30px #0004;
+.fact small { display:block; color:var(--muted); font-size:11px; }
+.fact strong { font-size:13px; font-weight:600; overflow-wrap:anywhere; }
+
+.skills-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
 
-.card .icon {
-    font-size: 32px;
-    margin-bottom: 12px;
+.skill-card {
+  padding:24px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:16px;
+  transition:.25s;
 }
 
-.card h3 {
-    color: var(--cyan);
-    margin-bottom: 10px;
+.skill-card:hover {
+  transform:translateY(-5px);
+  border-color:#65f5ed60;
 }
 
-.card p, .card li {
-    color: var(--muted);
+.skill-icon { font-size:27px; margin-bottom:13px; }
+.skill-card h3 { font-size:17px; margin-bottom:8px; }
+.skill-card p { color:var(--muted); font-size:12px; }
+
+.tag-list { display:flex; flex-wrap:wrap; gap:7px; margin-top:17px; }
+.tag-list span {
+  border:1px solid var(--border);
+  background:#ffffff06;
+  border-radius:7px;
+  padding:5px 9px;
+  font-size:10px;
+  color:#c8d3e9;
 }
 
-.card ul {
-    padding-left: 20px;
+.project-feature {
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  overflow:hidden;
+  border:1px solid #65f5ed40;
+  border-radius:22px;
+  background:linear-gradient(125deg,#101a2d,#11172a 60%,#20173b);
 }
 
-.project-card {
-    background: linear-gradient(135deg, #111a2b, #102a3b);
-    border: 1px solid #48e0ef65;
-    border-radius: 18px;
-    padding: 30px;
-    margin-top: 25px;
+.project-visual {
+  min-height:330px;
+  padding:28px;
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+  background:radial-gradient(circle at center,#1d68715c,transparent 68%);
+  border-right:1px solid var(--border);
 }
+
+.scan-box {
+  position:relative;
+  width:180px;
+  height:180px;
+  display:grid;
+  place-items:center;
+  border:1px solid #65f5ed80;
+  border-radius:22px;
+  background:#65f5ed08;
+  box-shadow:0 0 55px #65f5ed12;
+}
+
+.scan-box::before,.scan-box::after {
+  content:"";
+  position:absolute;
+  width:28px;
+  height:28px;
+  border-color:var(--cyan);
+  border-style:solid;
+}
+
+.scan-box::before {
+  top:-5px;left:-5px;
+  border-width:2px 0 0 2px;
+}
+.scan-box::after {
+  bottom:-5px;right:-5px;
+  border-width:0 2px 2px 0;
+}
+
+.eye-symbol { font-size:70px; }
+.scan-line {
+  position:absolute;
+  left:8px;right:8px;
+  height:2px;
+  background:var(--cyan);
+  box-shadow:0 0 14px var(--cyan);
+  top:35%;
+  animation:scan 3s ease-in-out infinite alternate;
+}
+
+.scan-caption {
+  position:absolute;
+  bottom:20px;
+  color:var(--cyan);
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+.project-content { padding:34px; }
+.project-content h3 { font-size:27px; margin:13px 0; }
+.project-content > p { color:var(--muted); font-size:13px; }
 
 .project-label {
-    display: inline-block;
-    color: var(--cyan);
-    background: #48e0ef15;
-    border: 1px solid #48e0ef55;
-    border-radius: 30px;
-    padding: 4px 12px;
-    font-size: 13px;
-    margin-bottom: 15px;
+  display:inline-block;
+  padding:6px 10px;
+  color:var(--cyan);
+  background:#65f5ed12;
+  border:1px solid #65f5ed35;
+  border-radius:7px;
+  font-size:10px;
+  letter-spacing:1px;
 }
 
-.project-card h3 {
-    font-size: 25px;
-    margin-bottom: 12px;
+.project-points {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:24px 0;
 }
 
-.project-card p {
-    color: var(--muted);
+.project-point {
+  padding:13px;
+  border:1px solid var(--border);
+  border-radius:10px;
 }
 
-.contact-box {
-    text-align: center;
-    background: var(--card);
-    padding: 40px 25px;
-    border: 1px solid #24364d;
-    border-radius: 18px;
+.project-point strong { display:block; font-size:12px; }
+.project-point span { color:var(--muted); font-size:11px; }
+
+.note { color:var(--muted); font-size:11px; }
+
+.timeline { position:relative; max-width:800px; }
+.timeline::before {
+  content:"";
+  position:absolute;
+  left:17px;
+  top:12px;
+  bottom:10px;
+  width:1px;
+  background:linear-gradient(var(--cyan),var(--purple),transparent);
 }
 
-.contact-box p {
-    color: var(--muted);
-    margin: 12px 0 22px;
+.timeline-item {
+  position:relative;
+  padding:0 0 30px 53px;
 }
 
-.email {
-    color: var(--cyan);
-    overflow-wrap: anywhere;
+.timeline-dot {
+  position:absolute;
+  left:9px;
+  top:6px;
+  width:17px;
+  height:17px;
+  background:var(--bg);
+  border:2px solid var(--cyan);
+  border-radius:50%;
+  box-shadow:0 0 14px #65f5ed30;
+}
+
+.timeline-card {
+  padding:23px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+}
+
+.timeline-card h3 { font-size:18px; }
+.timeline-card .date { color:var(--cyan); font-size:11px; margin:7px 0; }
+.timeline-card p { color:var(--muted); font-size:13px; }
+
+.goals-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.goal-card {
+  padding:25px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+}
+
+.goal-number {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:35px;
+  color:#65f5ed65;
+  font-weight:700;
+}
+
+.goal-card h3 { font-size:17px; margin:8px 0; }
+.goal-card p { font-size:12px; color:var(--muted); }
+
+.contact-panel {
+  position:relative;
+  overflow:hidden;
+  padding:55px 30px;
+  text-align:center;
+  border:1px solid #65f5ed38;
+  border-radius:22px;
+  background:
+    radial-gradient(ellipse at 50% 120%,#5d4a9a45,transparent 65%),
+    linear-gradient(135deg,#121c30,#111629);
+}
+
+.contact-panel h2 {
+  font-size:clamp(30px,4vw,45px);
+  margin:12px 0;
+}
+
+.contact-panel p {
+  max-width:520px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.contact-actions {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:13px;
+  margin-top:25px;
+}
+
+.email-text {
+  display:block;
+  color:var(--cyan);
+  font-size:13px;
+  margin-top:20px;
+  overflow-wrap:anywhere;
 }
 
 footer {
-    text-align: center;
-    padding: 25px;
-    color: var(--muted);
-    border-top: 1px solid #1c2a40;
-    font-size: 14px;
+  border-top:1px solid var(--border);
+  padding:25px 0;
+  color:var(--muted);
+  font-size:11px;
 }
+
+.footer-inner {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+footer strong { color:var(--cyan); }
+
+.reveal {
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal.visible { opacity:1; transform:translateY(0); }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+  0%,100% { transform:translateY(0) rotate(0); }
+  50% { transform:translateY(-12px) rotate(1deg); }
+}
+@keyframes spin { to { rotate:360deg; } }
+@keyframes scan { from { top:20%; } to { top:80%; } }
+
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation:none!important;
+    scroll-behavior:auto!important;
+    transition:none!important;
+  }
+  .reveal { opacity:1; transform:none; }
 }
 
-@keyframes appear {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+@media (max-width:850px) {
+  .hero { grid-template-columns:1fr; gap:25px; padding-top:75px; }
+  .hero-content { text-align:center; }
+  .hero-copy { margin:auto; }
+  .hero-actions,.hero-meta { justify-content:center; }
+  .art-wrap { min-height:410px; }
+  .about-grid { grid-template-columns:1fr; }
+  .skills-grid { grid-template-columns:repeat(2,1fr); }
+  .project-feature { grid-template-columns:1fr; }
+  .project-visual { min-height:280px; border-right:0; border-bottom:1px solid var(--border); }
 }
 
-@media (max-width: 700px) {
-    nav {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    nav ul {
-        gap: 14px;
-        flex-wrap: wrap;
-        justify-content: center;
-        font-size: 14px;
-    }
-
-    .hero {
-        text-align: center;
-        justify-content: center;
-        padding: 65px 7%;
-    }
-
-    .hero-content {
-        flex-basis: 100%;
-    }
-
-    .buttons {
-        justify-content: center;
-    }
-
-    .tech-art {
-        min-height: 280px;
-    }
-
-    .tech-circle {
-        width: 170px;
-        height: 170px;
-        font-size: 65px;
-    }
-
-    .tech-circle::before {
-        width: 205px;
-        height: 205px;
-    }
-
-    .tech-circle::after {
-        width: 235px;
-        height: 235px;
-    }
-
-    section {
-        padding: 65px 7%;
-    }
+@media (max-width:600px) {
+  .nav-inner { min-height:67px; }
+  .menu-btn { display:block; }
+  .nav-links {
+    display:none;
+    position:absolute;
+    top:67px;
+    left:0;right:0;
+    padding:20px 5%;
+    background:#0b1020;
+    border-bottom:1px solid var(--border);
+    flex-direction:column;
+    align-items:stretch;
+    gap:15px;
+  }
+  .nav-links.open { display:flex; }
+  .nav-links a { display:block; padding:5px 0; }
+  .nav-cta { text-align:center; }
+  .hero { padding:65px 0 45px; min-height:auto; }
+  .hero h1 { letter-spacing:-2px; }
+  .hero-copy { font-size:14px; }
+  .art-wrap { min-height:350px; }
+  .profile-card { width:225px; padding:21px; }
+  .avatar { width:90px; height:90px; font-size:33px; border-radius:25px; }
+  .orbit { width:270px; height:270px; }
+  .orbit.two { width:300px; height:200px; }
+  .float-one { right:-2px; top:24px; }
+  .float-two { left:-2px; bottom:23px; }
+  section { padding:65px 0; }
+  .section-title { font-size:33px; }
+  .skills-grid,.goals-grid { grid-template-columns:1fr; }
+  .project-content { padding:23px; }
+  .project-content h3 { font-size:23px; }
+  .project-points { grid-template-columns:1fr; }
+  .panel { padding:22px; }
+  .timeline-item { padding-left:42px; }
+  .contact-panel { padding:42px 20px; }
+  .footer-inner { justify-content:center; text-align:center; }
 }
 </style>
 </head>
@@ -354,156 +722,407 @@ footer {
 <body>
 
 <nav>
-    <div class="logo">Prabhavati<span class="highlight">.</span></div>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#project">Project</a></li>
-        <li><a href="#contact">Contact</a></li>
+  <div class="container nav-inner">
+    <a class="brand" href="#home">prabhavati<span>.</span></a>
+
+    <button class="menu-btn" id="menuBtn"
+      aria-label="Toggle navigation" aria-expanded="false">☰ Menu</button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#project">Project</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a class="nav-cta" href="#contact">Let's Connect ↗</a></li>
     </ul>
+  </div>
 </nav>
 
-<header class="hero" id="home">
-    <div class="hero-content">
-        <div class="tag">BCA STUDENT · FUTURE DEVELOPER</div>
-        <h1>Hello, I'm<br><span class="highlight">Prabhavati V.</span></h1>
-        <p>
-            Welcome to my digital portfolio! I'm a BCA student passionate
-            about technology, programming, and creating useful solutions
-            through innovative projects.
-        </p>
-        <div class="buttons">
-            <a class="btn primary" href="#project">Explore My Project ↗</a>
-            <a class="btn" href="#contact">Contact Me</a>
-        </div>
+<main>
+<header class="container hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow"><span class="status-dot"></span> MY DIGITAL SPACE</div>
+
+    <h1>Building my<br>future in <span class="gradient-text">technology.</span></h1>
+
+    <p class="hero-copy">
+      Hey, I'm <strong>Prabhavati V.</strong> — a BCA student who loves
+      exploring technology, learning new skills, and turning ideas into
+      meaningful projects. Welcome to my corner of the digital world.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#project">Explore My Project <span>↗</span></a>
+      <a class="btn btn-outline" href="#about">Discover My Story ↓</a>
     </div>
 
-    <div class="tech-art">
-        <div class="tech-circle">⌘</div>
+    <div class="hero-meta">
+      <span>✦ <b>BCA · 5th Semester</b></span>
+      <span>⌘ <b>Learning by Building</b></span>
     </div>
+  </div>
+
+  <div class="art-wrap" aria-label="Abstract technology-themed profile illustration">
+    <div class="art-glow"></div>
+    <div class="orbit"></div>
+    <div class="orbit two"></div>
+
+    <div class="profile-card">
+      <div class="avatar">PV.</div>
+      <h3>Prabhavati V.</h3>
+      <p>Student · Explorer · Future Professional</p>
+      <div class="mini-badges">
+        <span>Curiosity</span>
+        <span>Creativity</span>
+        <span>Growth</span>
+      </div>
+    </div>
+
+    <div class="float-label float-one">✦ <strong>Keep Learning</strong></div>
+    <div class="float-label float-two">⌘ Building <strong>My Future</strong></div>
+  </div>
 </header>
 
 <section id="about">
-    <h2 class="section-title">About <span>Me</span></h2>
-    <p class="section-intro">A little introduction about me and my interests.</p>
-
-    <div class="about-box">
-        <p>
-            I am Prabhavati, a Bachelor of Computer Applications (BCA)
-            student in my 5th semester. I am interested in learning
-            programming, exploring new technologies, and developing
-            projects that address real-world challenges.
-        </p>
-        <br>
-        <p>
-            My current academic project focuses on fatigue detection
-            using eye blink analysis, exploring how computer-based
-            techniques can help identify signs of drowsiness.
-        </p>
+  <div class="container reveal">
+    <div class="section-head">
+      <div class="section-kicker">01 / A LITTLE ABOUT ME</div>
+      <h2 class="section-title">More than a <span class="gradient-text">student.</span></h2>
+      <p class="section-desc">My journey, my interests, and the things that motivate me.</p>
     </div>
+
+    <div class="about-grid">
+      <div class="panel">
+        <h3>My story ✨</h3>
+        <p>
+          I am Prabhavati, a Bachelor of Computer Applications student
+          currently studying in my fifth semester. My academic journey
+          gives me opportunities to explore computer science, understand
+          how software works, and develop practical skills.
+        </p>
+        <p>
+          I believe learning is more valuable when I apply it. Through
+          coursework and projects, I want to improve my problem-solving,
+          technical knowledge, communication, and ability to approach
+          challenges with a creative mindset.
+        </p>
+        <p>
+          My featured academic project is <strong>Fatigue Detection
+          Using Eye Blink Analysis</strong>, which explores the use of
+          visual information to help identify possible signs of drowsiness.
+        </p>
+      </div>
+
+      <div class="panel">
+        <h3>Quick introduction</h3>
+        <div class="fact-list">
+          <div class="fact">
+            <div class="fact-icon">👩‍💻</div>
+            <div><small>Name</small><strong>Prabhavati V.</strong></div>
+          </div>
+          <div class="fact">
+            <div class="fact-icon">🎓</div>
+            <div><small>Education</small><strong>BCA · 5th Semester</strong></div>
+          </div>
+          <div class="fact">
+            <div class="fact-icon">🔬</div>
+            <div><small>Current Project</small><strong>Fatigue Detection</strong></div>
+          </div>
+          <div class="fact">
+            <div class="fact-icon">✉</div>
+            <div><small>Email</small><strong>vagadaragiprabhavati@gmail.com</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="skills">
-    <h2 class="section-title">My <span>Skills</span></h2>
-    <p class="section-intro">Technologies and skills I am learning and developing.</p>
-
-    <div class="cards">
-        <div class="card">
-            <div class="icon">💻</div>
-            <h3>Programming</h3>
-            <p>Add your programming languages here, such as C, Python, or Java.</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🌐</div>
-            <h3>Web Development</h3>
-            <p>Add the web technologies you know, such as HTML, CSS, and JavaScript.</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🧠</div>
-            <h3>Problem Solving</h3>
-            <p>Learning to analyse problems, think logically, and develop solutions.</p>
-        </div>
+  <div class="container reveal">
+    <div class="section-head">
+      <div class="section-kicker">02 / WHAT I'M DEVELOPING</div>
+      <h2 class="section-title">My learning <span class="gradient-text">toolkit.</span></h2>
+      <p class="section-desc">
+        A growing collection of technical and professional skills.
+        Update these examples to match the technologies you have actually learned.
+      </p>
     </div>
-</section>
 
-<section id="education">
-    <h2 class="section-title">My <span>Education</span></h2>
-    <p class="section-intro">My current academic journey.</p>
-
-    <div class="cards">
-        <div class="card">
-            <div class="icon">🎓</div>
-            <h3>Bachelor of Computer Applications</h3>
-            <p><strong>Year:</strong> 5th Semester</p>
-            <p><strong>College:</strong> Add your college name</p>
-            <p>Studying computer applications, programming, and software concepts.</p>
+    <div class="skills-grid">
+      <article class="skill-card">
+        <div class="skill-icon">⌨️</div>
+        <h3>Programming</h3>
+        <p>Building logical thinking and understanding how programs work.</p>
+        <div class="tag-list">
+          <span>Add your language</span>
+          <span>Problem solving</span>
         </div>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <h3>Web Technologies</h3>
+        <p>Exploring how websites are structured, styled, and made interactive.</p>
+        <div class="tag-list">
+          <span>HTML</span><span>CSS</span><span>Add more</span>
+        </div>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">👁️</div>
+        <h3>Computer Vision</h3>
+        <p>Learning about image-based analysis through my academic project.</p>
+        <div class="tag-list">
+          <span>Eye analysis</span><span>Project research</span>
+        </div>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">🧩</div>
+        <h3>Problem Solving</h3>
+        <p>Breaking down challenges into smaller steps and exploring solutions.</p>
+        <div class="tag-list">
+          <span>Logical thinking</span><span>Analysis</span>
+        </div>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">📚</div>
+        <h3>Continuous Learning</h3>
+        <p>Practising, learning from mistakes, and strengthening my foundation.</p>
+        <div class="tag-list">
+          <span>Practice</span><span>Research</span>
+        </div>
+      </article>
+
+      <article class="skill-card">
+        <div class="skill-icon">🤝</div>
+        <h3>Professional Skills</h3>
+        <p>Developing communication, collaboration, organisation, and presentation.</p>
+        <div class="tag-list">
+          <span>Teamwork</span><span>Communication</span>
+        </div>
+      </article>
     </div>
+  </div>
 </section>
 
 <section id="project">
-    <h2 class="section-title">Featured <span>Project</span></h2>
-    <p class="section-intro">A project from my academic learning journey.</p>
+  <div class="container reveal">
+    <div class="section-head">
+      <div class="section-kicker">03 / FEATURED WORK</div>
+      <h2 class="section-title">An idea I'm <span class="gradient-text">exploring.</span></h2>
+      <p class="section-desc">
+        My academic project brings together learning, observation, and technology.
+      </p>
+    </div>
 
-    <div class="project-card">
+    <article class="project-feature">
+      <div class="project-visual">
+        <div class="scan-box">
+          <div class="eye-symbol">◉</div>
+          <div class="scan-line"></div>
+        </div>
+        <div class="scan-caption">VISUAL ANALYSIS · CONCEPT</div>
+      </div>
+
+      <div class="project-content">
         <span class="project-label">BCA ACADEMIC PROJECT</span>
         <h3>Fatigue Detection Using Eye Blink Analysis</h3>
         <p>
-            This project aims to explore the detection of fatigue by analysing
-            eye-blink patterns. It is intended to investigate how visual
-            information can help identify possible signs of drowsiness.
+          The project explores how eye-blink behaviour can be analysed
+          to identify potential indicators of fatigue or drowsiness.
+          The broader goal is to investigate how computer-based visual
+          analysis may support awareness of tiredness.
         </p>
-        <br>
-        <p><strong class="highlight">Project details:</strong> More information and
-        implementation details will be added here later.</p>
+
+        <div class="project-points">
+          <div class="project-point">
+            <strong>01 · Observation</strong>
+            <span>Study eye-blink behaviour</span>
+          </div>
+          <div class="project-point">
+            <strong>02 · Analysis</strong>
+            <span>Explore visual indicators</span>
+          </div>
+          <div class="project-point">
+            <strong>03 · Detection</strong>
+            <span>Investigate possible fatigue signs</span>
+          </div>
+          <div class="project-point">
+            <strong>04 · Learning</strong>
+            <span>Apply concepts through a project</span>
+          </div>
+        </div>
+
+        <p class="note">
+          Project overview only. Actual methods, technologies, features,
+          and results should be added once confirmed from your implementation.
+        </p>
+      </div>
+    </article>
+
+    <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:20px">
+      <div class="skill-card">
+        <div class="skill-icon">🎯</div>
+        <h3>Project Aim</h3>
+        <p>Explore the relationship between eye-blink behaviour and potential fatigue indicators.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔍</div>
+        <h3>Why It Matters</h3>
+        <p>Investigate technology that may contribute to drowsiness awareness in appropriate settings.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💡</div>
+        <h3>What I Gain</h3>
+        <p>Develop project planning, technical understanding, research, and presentation skills.</p>
+      </div>
     </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container reveal">
+    <div class="section-head">
+      <div class="section-kicker">04 / MY JOURNEY</div>
+      <h2 class="section-title">Education & <span class="gradient-text">growth.</span></h2>
+      <p class="section-desc">The academic path I'm following as I build my foundation in technology.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h3>Bachelor of Computer Applications</h3>
+          <div class="date">CURRENTLY · 5TH SEMESTER</div>
+          <p>
+            Studying computer applications and developing my understanding
+            of programming, software concepts, and practical project work.
+          </p>
+          <p style="margin-top:10px">College: <strong>Add your college name</strong></p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h3>Project-Based Learning</h3>
+          <div class="date">CURRENT LEARNING JOURNEY</div>
+          <p>
+            Exploring how classroom concepts can be organised into a project,
+            documented clearly, and presented as a complete academic work.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h3>Next Chapter</h3>
+          <div class="date">FUTURE GOALS</div>
+          <p>
+            Continue improving my technical skills, complete meaningful projects,
+            and prepare for future opportunities in the technology field.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="goals">
-    <h2 class="section-title">My <span>Goals</span></h2>
-
-    <div class="cards">
-        <div class="card">
-            <div class="icon">🚀</div>
-            <h3>Learn & Grow</h3>
-            <p>Strengthen my technical knowledge and learn new tools and technologies.</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🛠️</div>
-            <h3>Build Projects</h3>
-            <p>Apply what I learn by developing useful and creative projects.</p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🎯</div>
-            <h3>Career Growth</h3>
-            <p>Continue developing the skills needed for a career in technology.</p>
-        </div>
+  <div class="container reveal">
+    <div class="section-head">
+      <div class="section-kicker">05 / LOOKING AHEAD</div>
+      <h2 class="section-title">What drives <span class="gradient-text">me.</span></h2>
+      <p class="section-desc">The principles guiding my learning journey.</p>
     </div>
+
+    <div class="goals-grid">
+      <article class="goal-card">
+        <div class="goal-number">01</div>
+        <h3>Learn with Purpose</h3>
+        <p>Strengthen my fundamentals and understand the concepts behind the tools I use.</p>
+      </article>
+
+      <article class="goal-card">
+        <div class="goal-number">02</div>
+        <h3>Create with Curiosity</h3>
+        <p>Turn ideas into practical projects and keep experimenting with new approaches.</p>
+      </article>
+
+      <article class="goal-card">
+        <div class="goal-number">03</div>
+        <h3>Grow with Confidence</h3>
+        <p>Improve communication, technical confidence, and readiness for future opportunities.</p>
+      </article>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
-    <h2 class="section-title">Get In <span>Touch</span></h2>
-
-    <div class="contact-box">
-        <h3>Let's Connect!</h3>
-        <p>Thank you for visiting my portfolio. Feel free to contact me by email.</p>
-        <a class="btn primary"
-           href="mailto:vagadaragiprabhavati@gmail.com">Send Me an Email ↗</a>
-        <p>Email: <a class="email"
-           href="mailto:vagadaragiprabhavati@gmail.com">vagadaragiprabhavati@gmail.com</a></p>
+  <div class="container reveal">
+    <div class="contact-panel">
+      <div class="eyebrow" style="justify-content:center">HAVE AN IDEA? LET'S CONNECT</div>
+      <h2>Every journey starts<br>with a <span class="gradient-text">conversation.</span></h2>
+      <p>
+        Thank you for taking the time to explore my portfolio.
+        I'd love to keep learning, share ideas, and connect with people
+        who are passionate about technology.
+      </p>
+      <div class="contact-actions">
+        <a class="btn btn-primary"
+           href="mailto:vagadaragiprabhavati@gmail.com">✉ Email Me ↗</a>
+        <a class="btn btn-outline" href="#home">↑ Back to Top</a>
+      </div>
+      <a class="email-text" href="mailto:vagadaragiprabhavati@gmail.com">
+        vagadaragiprabhavati@gmail.com
+      </a>
     </div>
+  </div>
 </section>
+</main>
 
 <footer>
-    <p>© 2026 Prabhavati V. | Personal Portfolio</p>
-    <p>Designed with passion and a love for technology.</p>
+  <div class="container footer-inner">
+    <p>Designed & built with curiosity by <strong>Prabhavati V.</strong></p>
+    <p>© <span id="year"></span> · Personal Portfolio</p>
+  </div>
 </footer>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+
+menuBtn.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', String(isOpen));
+  menuBtn.textContent = isOpen ? '✕ Close' : '☰ Menu';
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.textContent = '☰ Menu';
+  });
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
