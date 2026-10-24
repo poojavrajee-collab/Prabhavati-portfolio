@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabhavathi V | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1026;
+            color: white;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #111936;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        header h2 {
+            color: #66e3ff;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        nav a:hover {
+            color: #66e3ff;
+        }
+
+        .hero {
+            min-height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(circle, #203568, #0b1026 70%);
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 58px);
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #66e3ff;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #d4ddf5;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #66e3ff;
+            color: #0b1026;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 65px 10%;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #66e3ff;
+            font-size: 30px;
+            margin-bottom: 28px;
+        }
+
+        .about {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            color: #d4ddf5;
+        }
+
+        .card {
+            background: #151f40;
+            border: 1px solid #2c416f;
+            border-radius: 15px;
+            padding: 28px;
+            max-width: 750px;
+            margin: auto;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #66e3ff;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #d4ddf5;
+            margin-bottom: 12px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .skills span {
+            background: #151f40;
+            border: 1px solid #66e3ff;
+            padding: 10px 18px;
+            border-radius: 25px;
+        }
+
+        .contact {
+            text-align: center;
+            color: #d4ddf5;
+        }
+
+        footer {
+            text-align: center;
+            background: #111936;
+            padding: 20px;
+            color: #c5d0e9;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                text-align: center;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Prabhavathi V.</h2>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Hello, I'm <span>Prabhavathi V.</span></h1>
+        <p>
+            BCA Student | 5th Semester<br>
+            Welcome to my personal portfolio! Explore my skills,
+            academic journey, and projects.
+        </p>
+        <a href="#projects" class="btn">Explore My Project</a>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about">
+            <p>
+                I am Prabhavathi V., a Bachelor of Computer Applications
+                (BCA) student currently studying in the 5th semester.
+                I am interested in technology, programming, and developing
+                useful software projects. This portfolio showcases my
+                learning journey and academic work.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skills">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>Python</span>
+            <span>Programming</span>
+            <span>Problem Solving</span>
+            <span>Web Development</span>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>My Project</h2>
+        <div class="card">
+            <h3>Fatigue Detection Using Eye Blink Analysis</h3>
+            <p>
+                This project focuses on analyzing eye-blink patterns
+                to help identify signs of fatigue. It aims to support
+                fatigue awareness through computer-based analysis.
+            </p>
+            <p><strong>Project Status:</strong> Academic Project</p>
+            <p><strong>Technologies:</strong> To be updated</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact">
+            <p>Thank you for visiting my portfolio!</p>
+            <p>BCA | 5th Semester</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Prabhavathi V. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
